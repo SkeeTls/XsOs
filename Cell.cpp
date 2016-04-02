@@ -14,9 +14,15 @@ QRectF Cell::boundingRect() const
 
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-   painter->drawRect(0,0,50,50);
-   painter->drawText(10,10,m_text);
+    QRect rect = QRect(0, 0, 50, 50);
+    QFont font = painter->font();
+    font.setPointSize(font.pointSize()*3);
+
+    painter->drawRect(rect);
+    painter->setFont(font);
+    painter->drawText(rect,Qt::AlignCenter,m_text);
 }
+
 
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
@@ -25,5 +31,6 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void Cell::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    m_text = "x";
+    m_text = "X";
+    update();
 }
