@@ -4,7 +4,7 @@
 Cell::Cell():QGraphicsItem()
 
 {
-
+    m_cellEmpty = true;
 }
 
 QRectF Cell::boundingRect() const
@@ -31,6 +31,22 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void Cell::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    m_text = "X";
+    static bool moveFirstPlayer = true;
+
+    if (!m_cellEmpty)
+        return;
+
+        m_cellEmpty = false;
+
+        if (moveFirstPlayer) {
+            m_text = "X";
+            moveFirstPlayer = false;
+        }
+
+        else {
+            m_text = "0";
+            moveFirstPlayer = true;
+        }
+
     update();
 }

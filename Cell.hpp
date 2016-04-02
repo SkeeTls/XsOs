@@ -8,6 +8,9 @@ class Cell:public QGraphicsItem
 public:
     Cell();
 
+private:
+    bool m_cellEmpty;
+
     // QGraphicsItem interface
 public:
     QRectF boundingRect() const;
